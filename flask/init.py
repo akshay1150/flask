@@ -1,17 +1,19 @@
-#from flask import Flask
+from flask import Flask
+import yaml
+from kubernetes import client, config
+app = Flask(__name__)
 
-#app = Flask(__name__)
-#@app.route("/")
-#def index():
-#    return "hello world"
+@app.route("/")
+def index():
+    return "hello world"
 
 #if __name__ == "__main__":
 #  app.run(port=3330)
-import yaml
 
-from kubernetes import client, config
+#from kubernetes import client, config
 
-
+#app = Flask(__name__)
+@app.route("/enter")
 def main():
     config.load_kube_config()
  
@@ -30,5 +32,9 @@ def main():
         print("Deployment created. status='%s'" % str(resp.status))
        
 
+#if __name__ == '__main__':
+#   main()
 if __name__ == '__main__':
-   main()
+#  main()
+  app.run(port=3300)
+#  main()
